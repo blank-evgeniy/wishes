@@ -1,3 +1,4 @@
+import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import { Container } from "@/shared/ui/container";
 import {
@@ -20,7 +21,7 @@ export const Home = () => {
         </div>
 
         <Button size="xl" className="mt-20 z-10" asChild>
-          <Link href="/app">Вперед</Link>
+          <Link href={routes.dashboard}>Вперед</Link>
         </Button>
 
         <div className="flex-1 z-10 max-w-2xl w-full mt-32 grid sm:grid-cols-2 gap-4">
