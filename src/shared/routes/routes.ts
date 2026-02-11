@@ -3,7 +3,7 @@ export const routes = {
   login: "/auth/login",
   authCallback: "/auth/callback",
   dashboard: "/app",
-  createWishlist: "/app/create-wishlist",
+  createWish: (wishlist_id: number) => `/app/wishlist/${wishlist_id}/new`,
   wishlist: (id: number) => `/app/wishlist/${id}`,
   profile: "/app/me",
 };

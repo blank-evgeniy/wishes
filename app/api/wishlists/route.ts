@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     if (error) throw error;
 
     return NextResponse.json(data);
-  } catch (e) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to create wishlist" },
       { status: 400 },

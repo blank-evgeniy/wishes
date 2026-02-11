@@ -2,7 +2,6 @@
 
 import { Button } from "@/shared/ui/button";
 import { Card, CardContent, CardFooter } from "@/shared/ui/card";
-import { PlusIcon } from "lucide-react";
 
 import { routes } from "@/shared/routes";
 import Link from "next/link";
