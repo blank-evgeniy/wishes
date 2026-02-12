@@ -5,8 +5,15 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { savedWishlistsQueries } from "@/shared/api/saved-wishlists/saved-wishlist-queries";
 import { Item, ItemContent, ItemTitle, ItemActions } from "@/shared/ui/item";
-import { ChevronRightIcon } from "lucide-react";
+import { ChevronRightIcon, NotebookPenIcon } from "lucide-react";
 import { Skeleton } from "@/shared/ui/skeleton";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/shared/ui/empty";
 
 export const SavedWishlists = () => {
   const { data: wishlists, isLoading } = useQuery(
@@ -23,7 +30,19 @@ export const SavedWishlists = () => {
             .fill(0)
             .map((_, i) => <Skeleton className="h-12 w-full" key={i} />)}
 
-        {!isLoading && !wishlists?.length && "Нет сохраненных вишлистов"}
+        {!isLoading && !wishlists?.length && (
+          <Empty>
+            <EmptyHeader>
+              <EmptyMedia>
+                <NotebookPenIcon />
+              </EmptyMedia>
+              <EmptyTitle>Нет сохраненных вишлистов</EmptyTitle>
+              <EmptyDescription>
+                Попросите вашего друга поделиться с вами своим вишлистом
+              </EmptyDescription>
+            </EmptyHeader>
+          </Empty>
+        )}
 
         {wishlists?.map(({ wishlists: w }) => (
           <Item variant={"card"} size="sm" asChild key={w.id} className="h-12">

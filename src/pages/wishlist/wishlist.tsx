@@ -8,19 +8,24 @@ import { WishCard } from "./ui/wish-card";
 import { WishlistPageSkeleton } from "./ui/wishlist-page-skeleton";
 import { WishlistPageBreadcrumbs } from "./ui/wishlist-page-breadcrumbs";
 import { WishlistActions } from "./ui/wishlist-actions";
+import { notFound } from "next/navigation";
 
 interface WishlistPageProps {
   id: number;
 }
 
 export const WishlistPage = ({ id }: WishlistPageProps) => {
-  const { data: wishlist, isLoading } = useQuery(
-    wishlistQueries.wishlistDetails(id),
-  );
+  const {
+    data: wishlist,
+    isLoading,
+    error,
+  } = useQuery(wishlistQueries.wishlistDetails(id));
 
   if (isLoading) return <WishlistPageSkeleton />;
 
-  if (!wishlist) return <div>Wishlist not found</div>;
+  if (error?.message === "Not Found") return notFound();
+
+  if (!wishlist) return null;
 
   return (
     <main className="flex flex-col gap-12">

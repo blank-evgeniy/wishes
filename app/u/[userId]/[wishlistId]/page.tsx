@@ -8,16 +8,14 @@ async function getWishlistDetails(id: number) {
 
   const { data, error } = await supabase
     .from("wishlists")
-    .select(
-      `
-          *,
-          wishlist_items (*)
-        `,
-    )
-    .eq("id", Number(id))
+    .select(`*, wishlist_items (*)`)
+    .eq("id", id)
     .single<WishlistDetails>();
 
-  if (error) throw error;
+  if (error) {
+    console.warn("Ошибка при получении списка:", error.message);
+    return null;
+  }
 
   return data;
 }
@@ -31,8 +29,9 @@ export default async function Page({
 
   const wishlistDetails = await getWishlistDetails(Number(wishlistId));
 
-  if (wishlistDetails.owner_id && wishlistDetails.owner_id !== userId)
-    return notFound();
+  if (!wishlistDetails) return notFound();
+
+  if (wishlistDetails.owner_id !== userId) return notFound();
 
   return (
     <PublicWishlistPage

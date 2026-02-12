@@ -73,12 +73,27 @@ export async function GET(
       `,
       )
       .eq("id", Number(id))
-      .single<WishlistItemWithWishlist>();
+      .maybeSingle<WishlistItemWithWishlist>();
 
-    if (error) throw error;
+    if (error) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: 500, statusText: error.message },
+      );
+    }
+
+    if (!data) {
+      return NextResponse.json(
+        { error: "Item not found" },
+        { status: 404, statusText: "Item not found" },
+      );
+    }
 
     return NextResponse.json(data);
   } catch {
-    return NextResponse.json({ error: "Failed to fetch" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Unexpected error" },
+      { status: 500, statusText: "Unexpected error" },
+    );
   }
 }
