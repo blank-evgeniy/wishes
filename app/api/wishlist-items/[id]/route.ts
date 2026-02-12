@@ -1,4 +1,8 @@
-import { WishlistItem, WishlistItemUpdateDto } from "@/shared/api/types";
+import {
+  WishlistItem,
+  WishlistItemUpdateDto,
+  WishlistItemWithWishlist,
+} from "@/shared/api/types";
 import { getUserOrThrow } from "@/shared/utils/supabase/server";
 import { NextResponse } from "next/server";
 
@@ -57,9 +61,19 @@ export async function GET(
 
     const { data, error } = await supabase
       .from("wishlist_items")
-      .select("*")
+      .select(
+        `
+        *,
+        wishlists (
+          id,
+          title,
+          owner_id,
+          created_at
+        )
+      `,
+      )
       .eq("id", Number(id))
-      .single<WishlistItem>();
+      .single<WishlistItemWithWishlist>();
 
     if (error) throw error;
 

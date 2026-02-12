@@ -13,6 +13,7 @@ export type WishlistUpdateDto = Omit<
 
 export type WishlistItem =
   Database["public"]["Tables"]["wishlist_items"]["Row"];
+export type WishlistItemWithWishlist = WishlistItem & { wishlists: Wishlist };
 
 export type WishlistDetails = Wishlist & { wishlist_items: WishlistItem[] };
 

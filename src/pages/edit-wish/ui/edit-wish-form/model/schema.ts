@@ -1,7 +1,7 @@
-import { urlSchema } from "@/shared/validation/schema";
 import z from "zod";
+import { urlSchema } from "@/shared/validation/schema";
 
-export const createWishSchema = z.object({
+export const editWishSchema = z.object({
   title: z
     .string()
     .min(1, { message: "Введите название" })
@@ -12,4 +12,4 @@ export const createWishSchema = z.object({
   note: z.string().max(300, { message: "Не более 300 символов" }).optional(),
 });
 
-export type CreateWishSchema = z.infer<typeof createWishSchema>;
+export type EditWishSchema = z.infer<typeof editWishSchema>;

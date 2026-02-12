@@ -20,7 +20,7 @@ export const WishCard = ({ data }: WishCardProps) => {
 
   return (
     <Card className="relative mx-auto w-full pt-0 overflow-hidden">
-      <WishActions wish={data} className="absolute top-4 right-4" />
+      <WishActions wish={data} className="absolute top-4 right-4 z-10" />
 
       {image_url ? (
         <img

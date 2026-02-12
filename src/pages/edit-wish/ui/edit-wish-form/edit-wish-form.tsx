@@ -1,8 +1,9 @@
 "use client";
 
+import React from "react";
+
 import { Button } from "@/shared/ui/button";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Field,
   FieldDescription,
@@ -15,59 +16,66 @@ import {
 import { Input } from "@/shared/ui/input";
 import { Textarea } from "@/shared/ui/textarea";
 
-import { useQuery } from "@tanstack/react-query";
-import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
 import { RequiredMark } from "@/shared/ui/required-marl";
 
-import { CreateWishSchema, createWishSchema } from "./model/schema";
-import { useCreateWish } from "./api/use-create-wish";
+import { editWishSchema, EditWishSchema } from "./model/schema";
+import { useUpdateWish } from "./api/use-update-wish";
 import { useRouter } from "next/navigation";
 import { routes } from "@/shared/routes";
+import { toast } from "sonner";
+import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-interface CreateWishFormProps {
+interface EditWishFormProps {
   wishlistId: number;
+  wishId: number;
+  defaultValues?: EditWishSchema;
 }
 
-export const CreateWishForm = ({ wishlistId }: CreateWishFormProps) => {
+export const EditWishForm = ({
+  wishlistId,
+  wishId,
+  defaultValues,
+}: EditWishFormProps) => {
   const router = useRouter();
-
-  const { data: wishlist, isLoading } = useQuery(
-    wishlistQueries.wishlistDetails(wishlistId),
-  );
+  const { mutate, isPending } = useUpdateWish(wishlistId);
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(createWishSchema),
+    resolver: zodResolver(editWishSchema),
+    defaultValues,
   });
 
-  const { mutate, isPending } = useCreateWish(wishlistId);
-
-  const onSubmit = (data: CreateWishSchema) => {
+  const onSubmit = (data: EditWishSchema) => {
     mutate(
       {
-        ...data,
-        price: data.price ? Number(data.price) : null,
+        id: wishId,
+        data: { ...data, price: data.price ? Number(data.price) : null },
       },
       {
         onSuccess: () => {
-          router.push(routes.wishlist(wishlistId));
+          reset(data);
+
+          toast.success("Желание успешно обновлено", {
+            action: {
+              label: "К вишлисту",
+              onClick: () => router.push(routes.wishlist(wishlistId)),
+            },
+          });
         },
       },
     );
   };
 
-  if (!isLoading && !wishlist) return null;
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <FieldSet>
-        <FieldLegend>Создание желания</FieldLegend>
-        <FieldDescription>
-          Введите информацию о желании, чтобы добавить его в список
-        </FieldDescription>
+        <FieldLegend>Редактирование желания</FieldLegend>
+        <FieldDescription>Измените данные желания</FieldDescription>
 
         <FieldGroup>
           <Field>
@@ -108,9 +116,9 @@ export const CreateWishForm = ({ wishlistId }: CreateWishFormProps) => {
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="url">Ссылка на изображение</FieldLabel>
+            <FieldLabel htmlFor="image_url">Ссылка на изображение</FieldLabel>
             <Input
-              id="url"
+              id="image_url"
               autoComplete="off"
               {...register("image_url")}
               aria-invalid={!!errors.image_url}
@@ -132,14 +140,24 @@ export const CreateWishForm = ({ wishlistId }: CreateWishFormProps) => {
           </Field>
         </FieldGroup>
 
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-4">
+          <Button
+            type="submit"
+            disabled={isPending}
+            size={"lg"}
+            variant={"outline"}
+            asChild
+          >
+            <Link href={routes.wishlist(wishlistId)}>Отмена</Link>
+          </Button>
+
           <Button
             type="submit"
             disabled={isPending}
             loading={isPending}
             size={"lg"}
           >
-            Создать
+            Сохранить
           </Button>
         </div>
       </FieldSet>
