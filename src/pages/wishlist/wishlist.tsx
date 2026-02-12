@@ -10,6 +10,8 @@ import { Button } from "@/shared/ui/button";
 import { WishCard } from "./ui/wish-card";
 import { WishlistPageSkeleton } from "./ui/wishlist-page-skeleton";
 import { WishlistPageBreadcrumbs } from "./ui/wishlist-page-breadcrumbs";
+import { DeleteWishlistAction } from "./ui/delete-wishlist-action";
+import { EditWishlistAction } from "./ui/edit-wishlist-action";
 
 interface WishlistPageProps {
   id: number;
@@ -36,17 +38,12 @@ export const WishlistPage = ({ id }: WishlistPageProps) => {
             </Link>
           </Button>
 
-          <Button asChild variant={"outline"}>
-            <Link href={routes.createWish(id)}>
-              Изменить название <PencilIcon />
-            </Link>
-          </Button>
+          <EditWishlistAction
+            defaultValues={{ title: wishlist.title ?? "" }}
+            id={id}
+          />
 
-          <Button asChild variant={"destructive"} className="ml-auto">
-            <Link href={routes.createWish(id)}>
-              Удалить вишлист <TrashIcon />
-            </Link>
-          </Button>
+          <DeleteWishlistAction className="ml-auto" id={id} />
         </div>
       </header>
 

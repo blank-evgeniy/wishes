@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PlusIcon } from "lucide-react";
+import { PencilIcon } from "lucide-react";
 
 import { Button } from "@/shared/ui/button";
-import { Card } from "@/shared/ui/card";
 import {
   Dialog,
   DialogTrigger,
@@ -17,14 +16,24 @@ import {
 import { Field, FieldError, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
 
-import { createWishlistSchema, CreateWishlistSchema } from "./model/schema";
-import { useCreateWishlist } from "./api/use-create-wishlist";
+import { updateWishlistSchema, UpdateWishlistSchema } from "./model/schema";
+import { useEditWishlist } from "./api/use-edit-wishlist";
 import { useState } from "react";
 
-export const CreateWishlistAction = () => {
+interface EditWishlistActionProps {
+  id: number;
+  defaultValues: UpdateWishlistSchema;
+  className?: string;
+}
+
+export const EditWishlistAction = ({
+  className,
+  id,
+  defaultValues,
+}: EditWishlistActionProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { mutate: createWishlist, isPending } = useCreateWishlist();
+  const { mutate: updateWishlist, isPending } = useEditWishlist(id);
 
   const {
     register,
@@ -32,16 +41,14 @@ export const CreateWishlistAction = () => {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: zodResolver(createWishlistSchema),
-    defaultValues: {
-      title: "",
-    },
+    resolver: zodResolver(updateWishlistSchema),
+    defaultValues,
   });
 
-  const onSubmit = (data: CreateWishlistSchema) => {
-    createWishlist(data, {
+  const onSubmit = (data: UpdateWishlistSchema) => {
+    updateWishlist(data, {
       onSuccess: () => {
-        reset();
+        reset(data);
         setIsOpen(false);
       },
     });
@@ -49,20 +56,17 @@ export const CreateWishlistAction = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <form id="create-wishlist" onSubmit={handleSubmit(onSubmit)}>
+      <form id="Update-wishlist" onSubmit={handleSubmit(onSubmit)}>
         <DialogTrigger asChild>
-          <button className="flex h-35 w-full cursor-pointer">
-            <Card className="border-dashed flex items-center justify-center hover:bg-accent/50 transition-colors duration-100 size-full">
-              <PlusIcon className="text-primary size-12" />
-            </Card>
-          </button>
+          <Button variant={"outline"} className={className}>
+            Редактировать вишлист <PencilIcon />
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>
-            <DialogTitle>Новый вишлист</DialogTitle>
+            <DialogTitle>Редактировать вишлист</DialogTitle>
             <DialogDescription>
-              Введите название для вашего нового вишлиста. Например,{" "}
-              {'"День рождения"'}
+              Введите новое название для вашего нового вишлиста.
             </DialogDescription>
           </DialogHeader>
 
@@ -83,12 +87,12 @@ export const CreateWishlistAction = () => {
               </Button>
             </DialogClose>
             <Button
-              form="create-wishlist"
+              form="Update-wishlist"
               type="submit"
               disabled={isPending}
               loading={isPending}
             >
-              Создать
+              Сохранить
             </Button>
           </DialogFooter>
         </DialogContent>

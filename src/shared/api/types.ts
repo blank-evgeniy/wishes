@@ -6,6 +6,10 @@ export type WishlistInsertDto = Omit<
   Database["public"]["Tables"]["wishlists"]["Insert"],
   "created_at" | "owner_id" | "id"
 >;
+export type WishlistUpdateDto = Omit<
+  Database["public"]["Tables"]["wishlists"]["Update"],
+  "created_at" | "owner_id" | "id"
+>;
 
 export type WishlistItem =
   Database["public"]["Tables"]["wishlist_items"]["Row"];

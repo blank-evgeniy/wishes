@@ -26,7 +26,7 @@ export const WishlistPageBreadcrumbs = ({
       <BreadcrumbSeparator />
       <BreadcrumbItem>
         {isLoading ? (
-          <Skeleton className="h-7 w-20" />
+          <Skeleton className="h-6 w-20" />
         ) : (
           <BreadcrumbPage>{pageTitle}</BreadcrumbPage>
         )}

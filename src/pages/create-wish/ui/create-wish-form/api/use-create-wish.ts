@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { WishlistDetails, WishlistItemInsertDto } from "@/shared/api/types";
-import { createWishlistItem } from "@/shared/api/wishlists/create-wishlist-item";
+import { createWish } from "@/shared/api/wishlist-items/create-wish";
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
 
 export const useCreateWish = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: WishlistItemInsertDto) => createWishlistItem(data),
+    mutationFn: (data: WishlistItemInsertDto) => createWish(data),
     onSuccess: (data) => {
       queryClient.setQueryData<WishlistDetails>(
         wishlistQueries.wishlistDetailsKey(data.wishlist_id!),

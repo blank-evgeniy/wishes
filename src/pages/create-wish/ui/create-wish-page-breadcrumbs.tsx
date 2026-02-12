@@ -28,7 +28,7 @@ export const CreateWishPageBreadcrumbs = ({
       <BreadcrumbSeparator />
       <BreadcrumbItem>
         {isLoading ? (
-          <Skeleton className="h-7 w-20" />
+          <Skeleton className="h-6 w-20" />
         ) : (
           <BreadcrumbLink href={routes.wishlist(wishlistId)}>
             {wishlistTitle}
