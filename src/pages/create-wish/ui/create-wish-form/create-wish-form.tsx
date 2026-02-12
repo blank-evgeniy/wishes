@@ -43,14 +43,13 @@ export const CreateWishForm = ({ wishlistId }: CreateWishFormProps) => {
     resolver: zodResolver(createWishSchema),
   });
 
-  const { mutate, isPending } = useCreateWish();
+  const { mutate, isPending } = useCreateWish(wishlistId);
 
   const onSubmit = (data: CreateWishSchema) => {
     mutate(
       {
         ...data,
         price: Number(data.price),
-        wishlist_id: wishlistId,
       },
       {
         onSuccess: () => {

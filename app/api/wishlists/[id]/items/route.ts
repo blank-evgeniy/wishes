@@ -2,15 +2,20 @@ import { WishlistItemInsertDto } from "@/shared/api/types";
 import { getUserOrThrow } from "@/shared/utils/supabase/server";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export async function POST(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
+    const { id } = await params;
+
     const { supabase, user } = await getUserOrThrow();
     const body: WishlistItemInsertDto = await req.json();
 
     const { data: wishlist } = await supabase
       .from("wishlists")
       .select("id")
-      .eq("id", body.wishlist_id)
+      .eq("id", id)
       .eq("owner_id", user.id)
       .single();
 

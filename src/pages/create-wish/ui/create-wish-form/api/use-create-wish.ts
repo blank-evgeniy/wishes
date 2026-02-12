@@ -4,10 +4,10 @@ import { WishlistDetails, WishlistItemInsertDto } from "@/shared/api/types";
 import { createWish } from "@/shared/api/wishlist-items/create-wish";
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
 
-export const useCreateWish = () => {
+export const useCreateWish = (wishlistId: number) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: WishlistItemInsertDto) => createWish(data),
+    mutationFn: (data: WishlistItemInsertDto) => createWish(data, wishlistId),
     onSuccess: (data) => {
       queryClient.setQueryData<WishlistDetails>(
         wishlistQueries.wishlistDetailsKey(data.wishlist_id!),

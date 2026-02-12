@@ -3,11 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   _: Request,
-  { params }: { params: Promise<{ wishlist_id: string }> },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const supabase = await createClient();
-    const { wishlist_id } = await params;
+    const { id } = await params;
 
     const { data, error } = await supabase
       .from("wishlists")
@@ -17,7 +17,7 @@ export async function GET(
         wishlist_items (*)
       `,
       )
-      .eq("id", Number(wishlist_id))
+      .eq("id", Number(id))
       .single();
 
     if (error) throw error;
