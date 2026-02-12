@@ -2,12 +2,14 @@ import { WishlistItem } from "@/shared/api/types";
 import { Button } from "@/shared/ui/button";
 import {
   Card,
+  CardAction,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/shared/ui/card";
 import { SparkleIcon } from "lucide-react";
+import { WishActions } from "./wish-actions";
 
 interface WishCardProps {
   data: WishlistItem;
@@ -18,6 +20,8 @@ export const WishCard = ({ data }: WishCardProps) => {
 
   return (
     <Card className="relative mx-auto w-full pt-0 overflow-hidden">
+      <WishActions wish={data} className="absolute top-4 right-4" />
+
       {image_url ? (
         <img
           src={image_url}

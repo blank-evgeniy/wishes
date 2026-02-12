@@ -1,6 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { PencilIcon, PlusIcon, TrashIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
