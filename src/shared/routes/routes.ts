@@ -15,4 +15,5 @@ export const routes = {
     userId: string;
     wishlistId: number;
   }) => `/u/${userId}/${wishlistId}`,
+  settings: "/app/settings",
 };
