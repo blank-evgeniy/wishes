@@ -15,7 +15,10 @@ export const PublicWishlistPage = ({ wishlist }: PublicWishlistPageProps) => {
         {/* Данные пользователя */}
         <h1 className="text-3xl font-semibold">{wishlist.title}</h1>
 
-        <SaveWishlistAction wishlistId={wishlist.id} />
+        <SaveWishlistAction
+          wishlistId={wishlist.id}
+          ownerId={wishlist.owner_id!}
+        />
       </header>
 
       <div className="grid grid-cols-3 gap-8">

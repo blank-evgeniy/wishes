@@ -10,7 +10,13 @@ import { Button } from "@/shared/ui/button";
 
 import { useSaveWishlist } from "./api/use-save-wishlist";
 
-export const SaveWishlistAction = ({ wishlistId }: { wishlistId: number }) => {
+export const SaveWishlistAction = ({
+  wishlistId,
+  ownerId,
+}: {
+  wishlistId: number;
+  ownerId: string;
+}) => {
   const user = useAuth();
 
   const { data, isLoading } = useQuery(savedWishlistsQueries.has(wishlistId));
@@ -19,7 +25,7 @@ export const SaveWishlistAction = ({ wishlistId }: { wishlistId: number }) => {
 
   const { mutate: saveWishlist, isPending } = useSaveWishlist();
 
-  if (!user) return null;
+  if (!user || user.id === ownerId) return null;
 
   const handleSave = () => {
     if (isSaved) return;
