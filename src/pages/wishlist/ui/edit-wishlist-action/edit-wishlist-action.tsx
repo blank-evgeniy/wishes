@@ -59,7 +59,7 @@ export const EditWishlistAction = ({
       <form id="Update-wishlist" onSubmit={handleSubmit(onSubmit)}>
         <DialogTrigger asChild>
           <Button variant={"outline"} className={className}>
-            Редактировать вишлист <PencilIcon />
+            Редактировать <PencilIcon />
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-sm">

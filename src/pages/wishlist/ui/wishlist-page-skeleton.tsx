@@ -1,26 +1,13 @@
-import { Button } from "@/shared/ui/button";
 import { WishlistPageBreadcrumbs } from "./wishlist-page-breadcrumbs";
-import { PencilIcon, PlusIcon, TrashIcon } from "lucide-react";
 import { Skeleton } from "@/shared/ui/skeleton";
+import { WishlistActions } from "./wishlist-actions";
 
 export const WishlistPageSkeleton = () => (
   <main className="flex flex-col gap-12">
     <header className="flex flex-col gap-8">
       <WishlistPageBreadcrumbs isLoading />
 
-      <div className="flex gap-4">
-        <Button disabled>
-          Новое желание <PlusIcon />
-        </Button>
-
-        <Button variant={"outline"} disabled>
-          Изменить название <PencilIcon />
-        </Button>
-
-        <Button variant={"destructive"} className="ml-auto" disabled>
-          Удалить вишлист <TrashIcon />
-        </Button>
-      </div>
+      <WishlistActions isLoading />
     </header>
 
     <div className="grid grid-cols-3 gap-8">
