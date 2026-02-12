@@ -1,7 +1,6 @@
 import { Button } from "@/shared/ui/button";
 import { Container } from "@/shared/ui/container";
 
-import { LogoutAction } from "./ui/logout-action";
 import Link from "next/link";
 import { routes } from "@/shared/routes";
 
@@ -10,26 +9,22 @@ export const BaseLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Container className="py-8 flex-1 flex flex-col">
-      <header className="hidden lg:flex justify-between items-center mb-8">
-        <div className="flex gap-8 items-center">
-          <Link
-            href={routes.home}
-            className="leading-none text-xl text-primary font-semibold font-serif hover:text-primary/80 relative"
-          >
-            W<span className="absolute -left-1/4 text-primary/20">W</span>
-          </Link>
+      <header className="hidden lg:flex justify-between gap-8 items-center mb-8">
+        <Link
+          href={routes.home}
+          className="leading-none text-xl text-primary font-semibold font-serif hover:text-primary/80 relative"
+        >
+          W<span className="absolute -left-1/4 text-primary/20">W</span>
+        </Link>
 
-          <nav className="flex gap-4">
-            <Button variant={"ghost"} asChild>
-              <Link href={routes.dashboard}>Мои вишлисты</Link>
-            </Button>
-            <Button variant={"ghost"}>
-              <Link href={routes.settings}>Настройки</Link>
-            </Button>
-          </nav>
-        </div>
-
-        <LogoutAction />
+        <nav className="flex gap-4">
+          <Button variant={"ghost"} asChild>
+            <Link href={routes.dashboard}>Мои вишлисты</Link>
+          </Button>
+          <Button variant={"ghost"} asChild>
+            <Link href={routes.settings}>Настройки</Link>
+          </Button>
+        </nav>
       </header>
 
       {children}
