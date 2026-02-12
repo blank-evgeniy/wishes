@@ -2,7 +2,6 @@ import { WishlistItem } from "@/shared/api/types";
 import { Button } from "@/shared/ui/button";
 import {
   Card,
-  CardAction,
   CardDescription,
   CardFooter,
   CardHeader,

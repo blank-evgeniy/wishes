@@ -4,14 +4,13 @@ import { Button } from "@/shared/ui/button";
 import {
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuLabel,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenu,
 } from "@/shared/ui/dropdown-menu";
-import { EllipsisIcon, MenuIcon } from "lucide-react";
+import { EllipsisIcon } from "lucide-react";
 import Link from "next/link";
+import { DeleteWishModal } from "./ui/delete-wish-modal";
+import { useState } from "react";
 
 interface WishActionsProps {
   wish: WishlistItem;
@@ -19,27 +18,45 @@ interface WishActionsProps {
 }
 
 export const WishActions = ({ wish, className }: WishActionsProps) => {
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+  const handleCloseDeleteModal = () => setIsOpenDeleteModal(false);
+  const handleOpenDeleteModal = () => setIsOpenDeleteModal(true);
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button className={className} size={"icon"}>
-          <span className="sr-only">Открыть меню</span>
-          <EllipsisIcon />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent side="bottom" align="end">
-        <DropdownMenuItem asChild>
-          <Link
-            href={routes.editWish({
-              wishId: wish.id,
-              wishlistId: wish.wishlist_id!,
-            })}
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button className={className} size={"icon"}>
+            <span className="sr-only">Открыть меню</span>
+            <EllipsisIcon />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent side="bottom" align="end">
+          <DropdownMenuItem asChild>
+            <Link
+              href={routes.editWish({
+                wishId: wish.id,
+                wishlistId: wish.wishlist_id!,
+              })}
+            >
+              Редактировать
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            variant="destructive"
+            onClick={handleOpenDeleteModal}
           >
-            Редактировать
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem variant="destructive">Удалить</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+            Удалить
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <DeleteWishModal
+        id={wish.id}
+        wishlistId={wish.wishlist_id!}
+        open={isOpenDeleteModal}
+        onClose={handleCloseDeleteModal}
+      />
+    </>
   );
 };
