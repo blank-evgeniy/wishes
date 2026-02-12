@@ -1,8 +1,8 @@
 import { apiFetch } from "../client";
-import { SavedWishlist } from "../types";
+import { SavedWishlistWithWishlist } from "../types";
 
 export const getSavedWishlists = async () => {
-  return apiFetch<SavedWishlist[]>(`/api/saved-wishlists/me`, {
+  return apiFetch<SavedWishlistWithWishlist[]>(`/api/saved-wishlists/me`, {
     method: "GET",
   });
 };

@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
 import { CreateWishlistAction } from "./create-wishlist-action";
+import { Skeleton } from "@/shared/ui/skeleton";
 
 export const MyWishlists = () => {
   const { data: wishlists, isLoading } = useQuery(
@@ -20,6 +21,11 @@ export const MyWishlists = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <CreateWishlistAction />
+
+        {isLoading &&
+          new Array(2)
+            .fill(0)
+            .map((_, i) => <Skeleton className="h-35" key={i} />)}
 
         {wishlists?.map((w) => (
           <Card

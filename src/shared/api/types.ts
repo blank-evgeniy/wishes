@@ -29,6 +29,8 @@ export type WishlistItemUpdateDto = Omit<
 
 export type SavedWishlist =
   Database["public"]["Tables"]["saved_wishlists"]["Row"];
+export type SavedWishlistWithWishlist = SavedWishlist & { wishlists: Wishlist };
+
 export type SavedWishlistInsertDto = Omit<
   Database["public"]["Tables"]["saved_wishlists"]["Insert"],
   "id" | "created_at" | "user_id"
