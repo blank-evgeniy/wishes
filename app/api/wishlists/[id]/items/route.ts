@@ -23,7 +23,7 @@ export async function POST(
 
     const { data, error } = await supabase
       .from("wishlist_items")
-      .insert(body)
+      .insert({ ...body, wishlist_id: wishlist.id })
       .select()
       .single();
 

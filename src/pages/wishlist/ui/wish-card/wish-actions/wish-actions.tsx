@@ -11,6 +11,7 @@ import { EllipsisIcon } from "lucide-react";
 import Link from "next/link";
 import { DeleteWishModal } from "./ui/delete-wish-modal";
 import { useState } from "react";
+import { cn } from "@/shared/utils/cn";
 
 interface WishActionsProps {
   wish: WishlistItem;
@@ -27,7 +28,7 @@ export const WishActions = ({ wish, className }: WishActionsProps) => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button className={className} size={"icon"}>
+          <Button className={cn("cursor-pointer", className)} size={"icon"}>
             <span className="sr-only">Открыть меню</span>
             <EllipsisIcon />
           </Button>

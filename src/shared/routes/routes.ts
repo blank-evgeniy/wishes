@@ -8,4 +8,11 @@ export const routes = {
     `/app/wishlist/${wishlistId}/${wishId}`,
   wishlist: (id: number) => `/app/wishlist/${id}`,
   profile: "/app/me",
+  publicWishlist: ({
+    userId,
+    wishlistId,
+  }: {
+    userId: string;
+    wishlistId: number;
+  }) => `/u/${userId}/${wishlistId}`,
 };

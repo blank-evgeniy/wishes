@@ -1,0 +1,44 @@
+import { PublicWishlistPage } from "@/pages/public-wishlist";
+import { WishlistDetails } from "@/shared/api/types";
+import { createClient } from "@/shared/utils/supabase/server";
+import { notFound } from "next/navigation";
+
+async function getWishlistDetails(id: number) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("wishlists")
+    .select(
+      `
+          *,
+          wishlist_items (*)
+        `,
+    )
+    .eq("id", Number(id))
+    .single<WishlistDetails>();
+
+  if (error) throw error;
+
+  return data;
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ userId: string; wishlistId: string }>;
+}) {
+  const { wishlistId, userId } = await params;
+
+  const wishlistDetails = await getWishlistDetails(Number(wishlistId));
+
+  if (wishlistDetails.owner_id && wishlistDetails.owner_id !== userId)
+    return notFound();
+
+  return (
+    <PublicWishlistPage
+      wishlist={wishlistDetails}
+      wishlistId={Number(wishlistId)}
+      userId={Number(userId)}
+    />
+  );
+}

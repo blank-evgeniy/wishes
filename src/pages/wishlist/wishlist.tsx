@@ -12,12 +12,15 @@ import { WishlistPageSkeleton } from "./ui/wishlist-page-skeleton";
 import { WishlistPageBreadcrumbs } from "./ui/wishlist-page-breadcrumbs";
 import { DeleteWishlistAction } from "./ui/delete-wishlist-action";
 import { EditWishlistAction } from "./ui/edit-wishlist-action";
+import { CopyButton } from "@/shared/ui/copy-button";
+import { useAuth } from "@/context/auth-context";
 
 interface WishlistPageProps {
   id: number;
 }
 
 export const WishlistPage = ({ id }: WishlistPageProps) => {
+  const user = useAuth();
   const { data: wishlist, isLoading } = useQuery(
     wishlistQueries.wishlistDetails(id),
   );
@@ -42,6 +45,20 @@ export const WishlistPage = ({ id }: WishlistPageProps) => {
             defaultValues={{ title: wishlist.title ?? "" }}
             id={id}
           />
+
+          {!!user && (
+            <CopyButton
+              text={
+                window.location.origin +
+                routes.publicWishlist({
+                  userId: user.id,
+                  wishlistId: id,
+                })
+              }
+            >
+              Поделиться
+            </CopyButton>
+          )}
 
           <DeleteWishlistAction className="ml-auto" id={id} />
         </div>

@@ -1,30 +1,28 @@
-"use client";
+import { Toaster } from "sonner";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { AuthProvider } from "@/context/auth-context";
+import { createClient } from "@/shared/utils/supabase/server";
+
+import { ThemeProvider } from "./providers/theme-provider";
+import { QueryProvider } from "./providers/query-provider";
 
 import "./styles/globals.css";
-import { Toaster } from "sonner";
-import { ThemeProvider } from "./providers/theme-provider";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-    },
-  },
-});
+export const App = async ({ children }: { children: React.ReactNode }) => {
+  const supabase = await createClient();
 
-export const App = ({ children }: { children: React.ReactNode }) => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <div className="min-h-dvh flex">{children}</div>
-        <Toaster />
-      </QueryClientProvider>
+      <AuthProvider initialUser={user}>
+        <QueryProvider>
+          <div className="min-h-dvh flex">{children}</div>
+          <Toaster />
+        </QueryProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 };
