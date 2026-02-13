@@ -1,10 +1,12 @@
 "use client";
 
-import { Field, FieldGroup, FieldLabel } from "@/shared/ui/field";
-import { SettingsPageBreadcrumbs } from "./ui/settings-page-breadcrumbs";
-import { LogoutAction } from "./ui/logout-action";
 import dynamic from "next/dynamic";
+
+import { Field, FieldGroup, FieldLabel } from "@/shared/ui/field";
 import { Skeleton } from "@/shared/ui/skeleton";
+
+import { LogoutAction } from "./ui/logout-action";
+import { SettingsPageBreadcrumbs } from "./ui/settings-page-breadcrumbs";
 
 const ModeSwitcher = dynamic(() => import("./ui/mode-switcher"), {
   ssr: false,

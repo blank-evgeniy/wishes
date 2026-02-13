@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/shared/ui/button";
 import { routes } from "@/shared/routes";
 import {
   AlertDialog,
@@ -14,6 +13,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/shared/ui/alert-dialog";
+import { Button } from "@/shared/ui/button";
 
 import { useLogout } from "./api/use-logout";
 

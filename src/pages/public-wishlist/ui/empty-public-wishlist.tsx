@@ -1,11 +1,12 @@
+import { FrownIcon } from "lucide-react";
+
 import {
   Empty,
+  EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-  EmptyDescription,
 } from "@/shared/ui/empty";
-import { FrownIcon } from "lucide-react";
 
 export const EmptyPublicWishlist = () => (
   <Empty>

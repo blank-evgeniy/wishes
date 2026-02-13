@@ -1,14 +1,16 @@
 "use client";
 
+import { PencilIcon, PlusIcon, TrashIcon } from "lucide-react";
+import Link from "next/link";
+
+import { useAuth } from "@/context/auth-context";
+import { WishlistDetails } from "@/shared/api/types";
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import { CopyButton } from "@/shared/ui/copy-button";
-import { PencilIcon, PlusIcon, TrashIcon } from "lucide-react";
+
 import { DeleteWishlistAction } from "./delete-wishlist-action";
 import { EditWishlistAction } from "./edit-wishlist-action";
-import Link from "next/link";
-import { WishlistDetails } from "@/shared/api/types";
-import { useAuth } from "@/context/auth-context";
 
 interface WishlistActionsProps {
   wishlist?: WishlistDetails;

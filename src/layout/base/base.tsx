@@ -1,8 +1,9 @@
+import Link from "next/link";
+
+import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import { Container } from "@/shared/ui/container";
 
-import Link from "next/link";
-import { routes } from "@/shared/routes";
 import { MobileNavigation } from "./ui/mobile-navigation";
 
 export const BaseLayout = ({ children }: { children: React.ReactNode }) => {

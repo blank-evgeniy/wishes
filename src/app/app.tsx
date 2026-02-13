@@ -1,14 +1,13 @@
+import "./styles/globals.css";
+
 import { Toaster } from "sonner";
 
 import { AuthProvider } from "@/context/auth-context";
-
-import { createClient } from "@/shared/utils/supabase/server";
 import { TooltipProvider } from "@/shared/ui/tooltip";
+import { createClient } from "@/shared/utils/supabase/server";
 
-import { ThemeProvider } from "./providers/theme-provider";
 import { QueryProvider } from "./providers/query-provider";
-
-import "./styles/globals.css";
+import { ThemeProvider } from "./providers/theme-provider";
 
 export const App = async ({ children }: { children: React.ReactNode }) => {
   const supabase = await createClient();

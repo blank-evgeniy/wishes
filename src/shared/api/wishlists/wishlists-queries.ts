@@ -1,4 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
+
 import { getMyWishlists } from "./get-my-wishlists";
 import { getWishlistDetails } from "./get-wishlist-details";
 

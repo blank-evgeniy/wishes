@@ -1,4 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
+
 import { getWish } from "./get-wish";
 
 export const wishlistItemsQueries = {

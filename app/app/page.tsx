@@ -1,5 +1,6 @@
-import { DashboardPage } from "@/pages/dashboard";
 import { Metadata } from "next";
+
+import { DashboardPage } from "@/pages/dashboard";
 
 export const metadata: Metadata = {
   title: "Мои вишлисты",

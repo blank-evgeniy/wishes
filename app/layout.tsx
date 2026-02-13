@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Alegreya, IBM_Plex_Sans } from "next/font/google";
+
 import { App } from "@/app";
 
 const alegreya = Alegreya({

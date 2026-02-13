@@ -1,15 +1,16 @@
+import { SearchXIcon } from "lucide-react";
+import Link from "next/link";
+
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import {
   Empty,
-  EmptyHeader,
-  EmptyTitle,
-  EmptyDescription,
   EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
   EmptyMedia,
+  EmptyTitle,
 } from "@/shared/ui/empty";
-import { SearchXIcon } from "lucide-react";
-import Link from "next/link";
 
 export default function NotFound() {
   return (

@@ -1,5 +1,6 @@
-import { EditWishPage } from "@/pages/edit-wish/edit-wish";
 import { Metadata } from "next";
+
+import { EditWishPage } from "@/pages/edit-wish/edit-wish";
 
 export const metadata: Metadata = {
   title: "Редактирование вишлиста",

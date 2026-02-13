@@ -1,6 +1,7 @@
+import { NextResponse } from "next/server";
+
 import { SavedWishlist, SavedWishlistInsertDto } from "@/shared/api/types";
 import { getUserOrThrow } from "@/shared/utils/supabase/server";
-import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {

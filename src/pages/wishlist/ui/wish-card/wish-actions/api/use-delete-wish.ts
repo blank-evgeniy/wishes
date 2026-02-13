@@ -1,7 +1,8 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { WishlistDetails } from "@/shared/api/types";
 import { deleteWish } from "@/shared/api/wishlist-items/delete-wish";
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeleteWish = (id: number, wishlistId?: number) => {
   const queryClient = useQueryClient();

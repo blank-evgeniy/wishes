@@ -1,7 +1,8 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { Wishlist, WishlistInsertDto } from "@/shared/api/types";
 import { createWishlist } from "@/shared/api/wishlists/create-wishlist";
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useCreateWishlist = () => {
   const queryClient = useQueryClient();

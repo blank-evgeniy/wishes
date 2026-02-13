@@ -1,3 +1,5 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import {
   Wishlist,
   WishlistDetails,
@@ -5,7 +7,6 @@ import {
 } from "@/shared/api/types";
 import { updateWishlist } from "@/shared/api/wishlists/update-wishlist";
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useEditWishlist = (id: number) => {
   const queryClient = useQueryClient();

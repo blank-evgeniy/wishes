@@ -1,6 +1,3 @@
-import { routes } from "@/shared/routes";
-import { Button } from "@/shared/ui/button";
-import { Container } from "@/shared/ui/container";
 import {
   BookmarkIcon,
   LightbulbIcon,
@@ -8,6 +5,10 @@ import {
   StarIcon,
 } from "lucide-react";
 import Link from "next/link";
+
+import { routes } from "@/shared/routes";
+import { Button } from "@/shared/ui/button";
+import { Container } from "@/shared/ui/container";
 
 export const Home = () => {
   return (

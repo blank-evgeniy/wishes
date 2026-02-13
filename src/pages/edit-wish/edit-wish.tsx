@@ -1,12 +1,12 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { notFound } from "next/navigation";
 
 import { wishlistItemsQueries } from "@/shared/api/wishlist-items/wishlist-items-queries";
 
-import { EditWishPageBreadcrumbs } from "./ui/edit-wish-page-breadcrumbs";
 import { EditWishForm } from "./ui/edit-wish-form/edit-wish-form";
-import { notFound } from "next/navigation";
+import { EditWishPageBreadcrumbs } from "./ui/edit-wish-page-breadcrumbs";
 
 interface EditWishPageProps {
   wishlistId: number;

@@ -1,6 +1,7 @@
-import { WishlistPageBreadcrumbs } from "./wishlist-page-breadcrumbs";
 import { Skeleton } from "@/shared/ui/skeleton";
+
 import { WishlistActions } from "./wishlist-actions";
+import { WishlistPageBreadcrumbs } from "./wishlist-page-breadcrumbs";
 
 export const WishlistPageSkeleton = () => (
   <main className="flex flex-col gap-12">

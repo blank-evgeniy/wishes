@@ -1,10 +1,11 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
 
-import { CreateWishPageBreadcrumbs } from "./ui/create-wish-page-breadcrumbs";
 import { CreateWishForm } from "./ui/create-wish-form/create-wish-form";
+import { CreateWishPageBreadcrumbs } from "./ui/create-wish-page-breadcrumbs";
 
 interface CreateWishlistPageProps {
   wishlistId: number;

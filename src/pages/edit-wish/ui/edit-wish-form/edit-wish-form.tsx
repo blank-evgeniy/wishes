@@ -1,9 +1,14 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
-
-import { Button } from "@/shared/ui/button";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+import { routes } from "@/shared/routes";
+import { Button } from "@/shared/ui/button";
 import {
   Field,
   FieldDescription,
@@ -14,17 +19,11 @@ import {
   FieldSet,
 } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
+import { RequiredMark } from "@/shared/ui/required-marl";
 import { Textarea } from "@/shared/ui/textarea";
 
-import { RequiredMark } from "@/shared/ui/required-marl";
-
-import { editWishSchema, EditWishSchema } from "./model/schema";
 import { useUpdateWish } from "./api/use-update-wish";
-import { useRouter } from "next/navigation";
-import { routes } from "@/shared/routes";
-import { toast } from "sonner";
-import Link from "next/link";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { EditWishSchema,editWishSchema } from "./model/schema";
 
 interface EditWishFormProps {
   wishlistId: number;

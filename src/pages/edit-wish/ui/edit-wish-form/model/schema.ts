@@ -1,4 +1,5 @@
 import z from "zod";
+
 import { urlSchema } from "@/shared/validation/schema";
 
 export const editWishSchema = z.object({

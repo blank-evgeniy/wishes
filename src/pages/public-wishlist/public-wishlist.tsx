@@ -1,8 +1,9 @@
-import { PublicWishCard } from "./ui/public-wish-card";
 import { WishlistDetails } from "@/shared/api/types";
+
+import { EmptyPublicWishlist } from "./ui/empty-public-wishlist";
+import { PublicWishCard } from "./ui/public-wish-card";
 import { SaveWishlistAction } from "./ui/save-wishlist-action";
 import { YourWishlistBadge } from "./ui/your-wishlist-badge";
-import { EmptyPublicWishlist } from "./ui/empty-public-wishlist";
 
 interface PublicWishlistPageProps {
   wishlistId: number;

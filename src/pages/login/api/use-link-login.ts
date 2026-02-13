@@ -1,6 +1,7 @@
 "use client";
-import { supabase } from "@/shared/utils/supabase/client";
 import { useMutation } from "@tanstack/react-query";
+
+import { supabase } from "@/shared/utils/supabase/client";
 
 export const useLinkLogin = () =>
   useMutation({

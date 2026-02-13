@@ -1,24 +1,24 @@
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PencilIcon } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Button } from "@/shared/ui/button";
 import {
   Dialog,
-  DialogTrigger,
+  DialogClose,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
-  DialogClose,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/shared/ui/dialog";
 import { Field, FieldError, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
 
-import { updateWishlistSchema, UpdateWishlistSchema } from "./model/schema";
 import { useEditWishlist } from "./api/use-edit-wishlist";
-import { useState } from "react";
+import { UpdateWishlistSchema,updateWishlistSchema } from "./model/schema";
 
 interface EditWishlistActionProps {
   id: number;

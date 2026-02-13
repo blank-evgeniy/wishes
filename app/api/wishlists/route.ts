@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getUserOrThrow } from "@/shared/utils/supabase/server";
+
 import { Wishlist } from "@/shared/api/types";
+import { getUserOrThrow } from "@/shared/utils/supabase/server";
 
 interface CreateWishlistBody {
   title: string;

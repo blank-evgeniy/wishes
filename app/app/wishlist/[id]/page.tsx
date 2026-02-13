@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { WishlistPage } from "@/pages/wishlist";
 
 export const metadata: Metadata = {

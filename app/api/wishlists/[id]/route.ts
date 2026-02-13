@@ -1,6 +1,7 @@
+import { NextResponse } from "next/server";
+
 import { Wishlist, WishlistUpdateDto } from "@/shared/api/types";
 import { getUserOrThrow } from "@/shared/utils/supabase/server";
-import { NextResponse } from "next/server";
 
 export async function DELETE(
   _: Request,

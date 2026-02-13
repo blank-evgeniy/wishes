@@ -1,17 +1,19 @@
+import { EllipsisIcon } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+
 import { WishlistItem } from "@/shared/api/types";
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import {
-  DropdownMenuTrigger,
+  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenu,
+  DropdownMenuTrigger,
 } from "@/shared/ui/dropdown-menu";
-import { EllipsisIcon } from "lucide-react";
-import Link from "next/link";
-import { DeleteWishModal } from "./ui/delete-wish-modal";
-import { useState } from "react";
 import { cn } from "@/shared/utils/cn";
+
+import { DeleteWishModal } from "./ui/delete-wish-modal";
 
 interface WishActionsProps {
   wish: WishlistItem;

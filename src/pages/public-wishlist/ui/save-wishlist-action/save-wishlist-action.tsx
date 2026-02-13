@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { SaveIcon } from "lucide-react";
 
 import { useAuth } from "@/context/auth-context";
-
 import { savedWishlistsQueries } from "@/shared/api/saved-wishlists/saved-wishlist-queries";
 import { Button } from "@/shared/ui/button";
 

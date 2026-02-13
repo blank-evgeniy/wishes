@@ -1,5 +1,6 @@
-import { urlSchema } from "@/shared/validation/schema";
 import z from "zod";
+
+import { urlSchema } from "@/shared/validation/schema";
 
 export const createWishSchema = z.object({
   title: z

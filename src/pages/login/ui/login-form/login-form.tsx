@@ -1,23 +1,25 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckCircle2Icon } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { Alert, AlertDescription, AlertTitle } from "@/shared/ui/alert";
 import { Button } from "@/shared/ui/button";
 import {
   Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
   CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/shared/ui/card";
 import { Field, FieldError, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
-import { useForm } from "react-hook-form";
-import { loginSchema, LoginSchema } from "../../model/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import { useLinkLogin } from "../../api/use-link-login";
-import { useState } from "react";
-import { Alert, AlertDescription, AlertTitle } from "@/shared/ui/alert";
-import { CheckCircle2Icon } from "lucide-react";
+import { LoginSchema,loginSchema } from "../../model/schema";
 
 export const LoginForm = () => {
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);

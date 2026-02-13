@@ -1,9 +1,9 @@
 import Link from "next/link";
 
+import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 
 import { LoginForm } from "./ui/login-form";
-import { routes } from "@/shared/routes";
 
 export const LoginPage = () => {
   return (

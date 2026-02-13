@@ -1,11 +1,11 @@
 import { routes } from "@/shared/routes";
 import {
   Breadcrumb,
-  BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
+  BreadcrumbList,
   BreadcrumbPage,
+  BreadcrumbSeparator,
 } from "@/shared/ui/breadcrumb";
 import { Skeleton } from "@/shared/ui/skeleton";
 

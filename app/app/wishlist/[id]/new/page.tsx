@@ -1,5 +1,6 @@
-import { CreateWishlistPage } from "@/pages/create-wish";
 import { Metadata } from "next";
+
+import { CreateWishlistPage } from "@/pages/create-wish";
 
 export const metadata: Metadata = {
   title: "Новый вишлист",

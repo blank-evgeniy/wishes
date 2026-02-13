@@ -1,6 +1,7 @@
 import { queryOptions } from "@tanstack/react-query";
-import { getSavedWishlists } from "./get-saved-wishlists";
+
 import { checkHasSavedWishlist } from "./check-has-saved-wishlist";
+import { getSavedWishlists } from "./get-saved-wishlists";
 
 export const savedWishlistsQueries = {
   baseKey: () => ["saved"],

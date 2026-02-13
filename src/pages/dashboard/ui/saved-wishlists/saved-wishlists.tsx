@@ -1,12 +1,11 @@
 "use client";
 
-import { routes } from "@/shared/routes";
-import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
-import { savedWishlistsQueries } from "@/shared/api/saved-wishlists/saved-wishlist-queries";
-import { Item, ItemContent, ItemTitle, ItemActions } from "@/shared/ui/item";
 import { ChevronRightIcon, NotebookPenIcon } from "lucide-react";
-import { Skeleton } from "@/shared/ui/skeleton";
+import Link from "next/link";
+
+import { savedWishlistsQueries } from "@/shared/api/saved-wishlists/saved-wishlist-queries";
+import { routes } from "@/shared/routes";
 import {
   Empty,
   EmptyDescription,
@@ -14,6 +13,8 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/shared/ui/empty";
+import { Item, ItemActions,ItemContent, ItemTitle } from "@/shared/ui/item";
+import { Skeleton } from "@/shared/ui/skeleton";
 
 export const SavedWishlists = () => {
   const { data: wishlists, isLoading } = useQuery(

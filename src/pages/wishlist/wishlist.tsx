@@ -1,15 +1,15 @@
 "use client";
 
-import { notFound } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import { notFound } from "next/navigation";
 
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
 
-import { WishCard } from "./ui/wish-card";
-import { WishlistPageSkeleton } from "./ui/wishlist-page-skeleton";
-import { WishlistPageBreadcrumbs } from "./ui/wishlist-page-breadcrumbs";
-import { WishlistActions } from "./ui/wishlist-actions";
 import { EmptyWishlist } from "./ui/empty-wishlist";
+import { WishCard } from "./ui/wish-card";
+import { WishlistActions } from "./ui/wishlist-actions";
+import { WishlistPageBreadcrumbs } from "./ui/wishlist-page-breadcrumbs";
+import { WishlistPageSkeleton } from "./ui/wishlist-page-skeleton";
 
 interface WishlistPageProps {
   id: number;

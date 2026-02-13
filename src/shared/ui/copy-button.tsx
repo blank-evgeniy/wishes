@@ -1,5 +1,6 @@
+import { Check,Clipboard } from "lucide-react";
 import { useState } from "react";
-import { Clipboard, Check } from "lucide-react";
+
 import { Button, ButtonProps } from "./button";
 
 interface CopyButtonProps extends ButtonProps {

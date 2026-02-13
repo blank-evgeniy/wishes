@@ -1,15 +1,17 @@
+import { toast } from "sonner";
+
 import {
+  AlertDialog,
+  AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
   AlertDialogDescription,
   AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialog,
+  AlertDialogHeader,
+  AlertDialogTitle,
 } from "@/shared/ui/alert-dialog";
 import { Button } from "@/shared/ui/button";
+
 import { useDeleteWish } from "../api/use-delete-wish";
-import { toast } from "sonner";
 
 interface DeleteWishModalProps {
   open: boolean;

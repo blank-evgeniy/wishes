@@ -1,5 +1,6 @@
-import { getUserOrThrow } from "@/shared/utils/supabase/server";
 import { NextResponse } from "next/server";
+
+import { getUserOrThrow } from "@/shared/utils/supabase/server";
 
 export async function GET() {
   try {

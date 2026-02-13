@@ -1,20 +1,21 @@
 import { TrashIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
+import { routes } from "@/shared/routes";
 import {
-  AlertDialogTrigger,
+  AlertDialog,
+  AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
   AlertDialogDescription,
   AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialog,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
 } from "@/shared/ui/alert-dialog";
 import { Button } from "@/shared/ui/button";
-import { useState } from "react";
+
 import { useDeleteWishlist } from "./api/use-delete-wishlist";
-import { useRouter } from "next/navigation";
-import { routes } from "@/shared/routes";
 
 interface DeleteWishlistActionProps {
   id: number;

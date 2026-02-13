@@ -1,15 +1,16 @@
+import { FolderMinusIcon } from "lucide-react";
+import Link from "next/link";
+
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import {
   Empty,
+  EmptyContent,
+  EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-  EmptyDescription,
-  EmptyContent,
 } from "@/shared/ui/empty";
-import { FolderMinusIcon } from "lucide-react";
-import Link from "next/link";
 
 interface EmptyWishlistProps {
   id: number;

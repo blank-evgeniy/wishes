@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/shared/utils/supabase/server";
+
 import { routes } from "@/shared/routes";
+import { createClient } from "@/shared/utils/supabase/server";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

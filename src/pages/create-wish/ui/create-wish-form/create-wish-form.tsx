@@ -1,8 +1,13 @@
 "use client";
 
-import { Button } from "@/shared/ui/button";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+
+import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
+import { routes } from "@/shared/routes";
+import { Button } from "@/shared/ui/button";
 import {
   Field,
   FieldDescription,
@@ -13,16 +18,11 @@ import {
   FieldSet,
 } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
+import { RequiredMark } from "@/shared/ui/required-marl";
 import { Textarea } from "@/shared/ui/textarea";
 
-import { useQuery } from "@tanstack/react-query";
-import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
-import { RequiredMark } from "@/shared/ui/required-marl";
-
-import { CreateWishSchema, createWishSchema } from "./model/schema";
 import { useCreateWish } from "./api/use-create-wish";
-import { useRouter } from "next/navigation";
-import { routes } from "@/shared/routes";
+import { CreateWishSchema, createWishSchema } from "./model/schema";
 
 interface CreateWishFormProps {
   wishlistId: number;

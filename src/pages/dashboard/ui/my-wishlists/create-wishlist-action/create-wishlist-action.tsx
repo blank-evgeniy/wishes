@@ -1,25 +1,25 @@
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PlusIcon } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Button } from "@/shared/ui/button";
 import { Card } from "@/shared/ui/card";
 import {
   Dialog,
-  DialogTrigger,
+  DialogClose,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
-  DialogClose,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/shared/ui/dialog";
 import { Field, FieldError, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
 
-import { createWishlistSchema, CreateWishlistSchema } from "./model/schema";
 import { useCreateWishlist } from "./api/use-create-wishlist";
-import { useState } from "react";
+import { CreateWishlistSchema,createWishlistSchema } from "./model/schema";
 
 export const CreateWishlistAction = () => {
   const [isOpen, setIsOpen] = useState(false);

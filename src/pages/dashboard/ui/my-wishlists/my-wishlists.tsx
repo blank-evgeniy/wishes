@@ -1,14 +1,15 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+
+import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
+import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import { Card, CardContent, CardFooter } from "@/shared/ui/card";
-
-import { routes } from "@/shared/routes";
-import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
-import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
-import { CreateWishlistAction } from "./create-wishlist-action";
 import { Skeleton } from "@/shared/ui/skeleton";
+
+import { CreateWishlistAction } from "./create-wishlist-action";
 
 export const MyWishlists = () => {
   const { data: wishlists, isLoading } = useQuery(
