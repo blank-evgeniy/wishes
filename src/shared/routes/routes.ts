@@ -1,6 +1,7 @@
 export const routes = {
   home: "/",
   login: "/auth/login",
+  register: "/auth/register",
   authCallback: "/auth/callback",
   dashboard: "/app",
   createWish: (wishlistId: number) => `/app/wishlist/${wishlistId}/new`,

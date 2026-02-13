@@ -6,26 +6,30 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import { Header } from "@/layout/header";
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import { Container } from "@/shared/ui/container";
 
 export const Home = () => {
   return (
-    <Container className="flex-1 flex flex-col pt-20 max-w-440">
-      <main className="rounded-t-xl border-border bg-secondary flex-1 flex flex-col items-center overflow-hidden relative p-8">
+    <Container className="flex-1 flex flex-col max-w-440 lg:pt-6 pt-4">
+      <Header />
+      <main className="rounded-t-xl border-border bg-secondary flex-1 flex flex-col items-center overflow-hidden relative lg:p-8 p-4">
         <div className="mt-20 text-center space-y-6 relative z-10">
           <h1 className="text-5xl font-semibold font-serif text-pr">Wishes</h1>
-          <p className="text-xl font-semibold">
+          <p className="lg:text-xl text-base font-semibold">
             Собери все свои желания в одном месте
           </p>
         </div>
 
-        <Button size="xl" className="mt-20 z-10" asChild>
-          <Link href={routes.dashboard}>Вперед</Link>
-        </Button>
+        <div className="flex gap-4 lg:mt-20 mt-12 z-10">
+          <Button size="lg" asChild>
+            <Link href={routes.dashboard}>Вперед</Link>
+          </Button>
+        </div>
 
-        <div className="flex-1 z-10 max-w-2xl w-full mt-32 grid sm:grid-cols-2 gap-4">
+        <div className="flex-1 z-10 max-w-2xl w-full lg:mt-32 mt-20 grid sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-lg border bg-background/80 flex flex-col items-start gap-2">
             <StarIcon className="w-6 h-6 text-primary" />
             <h2 className="text-lg font-medium">Создавай списки желаний</h2>

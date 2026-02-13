@@ -11,7 +11,21 @@ import { MobileNavigation } from "./mobile-navigation";
 export const HeaderNavigation = () => {
   const user = useAuth();
 
-  if (!user) return null;
+  if (!user)
+    return (
+      <>
+        <nav className="hidden sm:flex gap-4">
+          <Button variant={"outline"} asChild>
+            <Link href={routes.register}>Создать аккаунт</Link>
+          </Button>
+          <Button asChild>
+            <Link href={routes.settings}>Вход</Link>
+          </Button>
+        </nav>
+
+        <MobileNavigation className="sm:hidden" />
+      </>
+    );
 
   return (
     <>
