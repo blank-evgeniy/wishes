@@ -8,7 +8,7 @@ export const useLinkLogin = () =>
     mutationFn: async (email: string) => {
       const { data, error } = await supabase.auth.signInWithOtp({
         email,
-        options: { emailRedirectTo: location.origin },
+        options: { emailRedirectTo: process.env.NEXT_PUBLIC_APP_URL },
       });
       if (error) throw error;
       return data;
