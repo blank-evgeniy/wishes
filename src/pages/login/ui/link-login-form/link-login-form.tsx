@@ -1,11 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2Icon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Alert, AlertDescription, AlertTitle } from "@/shared/ui/alert";
 import { Button } from "@/shared/ui/button";
 import {
   Card,
@@ -17,10 +15,11 @@ import {
 } from "@/shared/ui/card";
 import { Field, FieldError, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
+import { MailMessageAlert } from "@/templates/mail-message-alert";
 
 import { useLinkLogin } from "./api/use-link-login";
 import { LoginByLinkSchema, loginByLinkSchema } from "./model/schema";
-import { getMailProviderLink, mapLinkLoginErrorMessage } from "./model/utils";
+import { mapLinkLoginErrorMessage } from "./model/utils";
 
 export const LinkLoginForm = () => {
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
@@ -57,21 +56,10 @@ export const LinkLoginForm = () => {
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         {submittedEmail && (
-          <Alert>
-            <CheckCircle2Icon />
-            <AlertTitle>Проверьте почту</AlertTitle>
-            <AlertDescription>
-              Мы отправили ссылку для входа на
-              <a
-                href={getMailProviderLink(submittedEmail)}
-                target="_blank"
-                rel="noreferrer"
-                className="underline font-medium"
-              >
-                {submittedEmail}
-              </a>
-            </AlertDescription>
-          </Alert>
+          <MailMessageAlert
+            submittedEmail={submittedEmail}
+            note={"Мы отправили ссылку для входа на"}
+          />
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} id="login-form">
