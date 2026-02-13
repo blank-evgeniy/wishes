@@ -1,5 +1,6 @@
 "use client";
 
+import { notFound } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
@@ -8,7 +9,7 @@ import { WishCard } from "./ui/wish-card";
 import { WishlistPageSkeleton } from "./ui/wishlist-page-skeleton";
 import { WishlistPageBreadcrumbs } from "./ui/wishlist-page-breadcrumbs";
 import { WishlistActions } from "./ui/wishlist-actions";
-import { notFound } from "next/navigation";
+import { EmptyWishlist } from "./ui/empty-wishlist";
 
 interface WishlistPageProps {
   id: number;
@@ -35,11 +36,15 @@ export const WishlistPage = ({ id }: WishlistPageProps) => {
         <WishlistActions wishlist={wishlist} />
       </header>
 
-      <div className="grid md:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
-        {wishlist.wishlist_items.map((item) => (
-          <WishCard data={item} key={item.id} />
-        ))}
-      </div>
+      {wishlist.wishlist_items.length ? (
+        <div className="grid md:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
+          {wishlist.wishlist_items.map((item) => (
+            <WishCard data={item} key={item.id} />
+          ))}
+        </div>
+      ) : (
+        <EmptyWishlist id={id} />
+      )}
     </main>
   );
 };

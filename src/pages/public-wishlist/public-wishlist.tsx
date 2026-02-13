@@ -2,6 +2,7 @@ import { PublicWishCard } from "./ui/public-wish-card";
 import { WishlistDetails } from "@/shared/api/types";
 import { SaveWishlistAction } from "./ui/save-wishlist-action";
 import { YourWishlistBadge } from "./ui/your-wishlist-badge";
+import { EmptyPublicWishlist } from "./ui/empty-public-wishlist";
 
 interface PublicWishlistPageProps {
   wishlistId: number;
@@ -23,11 +24,15 @@ export const PublicWishlistPage = ({ wishlist }: PublicWishlistPageProps) => {
         <YourWishlistBadge ownerId={wishlist.owner_id!} />
       </header>
 
-      <div className="grid md:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
-        {wishlist.wishlist_items.map((item) => (
-          <PublicWishCard data={item} key={item.id} />
-        ))}
-      </div>
+      {wishlist.wishlist_items.length ? (
+        <div className="grid md:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
+          {wishlist.wishlist_items.map((item) => (
+            <PublicWishCard data={item} key={item.id} />
+          ))}
+        </div>
+      ) : (
+        <EmptyPublicWishlist />
+      )}
     </main>
   );
 };
