@@ -18,10 +18,11 @@ import {
 import { Field, FieldError, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
 
-import { useLinkLogin } from "../../api/use-link-login";
-import { LoginSchema,loginSchema } from "../../model/schema";
+import { useLinkLogin } from "./api/use-link-login";
+import { LoginByLinkSchema, loginByLinkSchema } from "./model/schema";
+import { getMailProviderLink, mapLinkLoginErrorMessage } from "./model/utils";
 
-export const LoginForm = () => {
+export const LinkLoginForm = () => {
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
 
   const { mutate: linkLogin, isPending, error } = useLinkLogin();
@@ -30,11 +31,11 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<LoginByLinkSchema>({
+    resolver: zodResolver(loginByLinkSchema),
   });
 
-  const onSubmit = (data: LoginSchema) => {
+  const onSubmit = (data: LoginByLinkSchema) => {
     linkLogin(data.email, {
       onSuccess: () => {
         setSubmittedEmail(data.email);
@@ -42,21 +43,9 @@ export const LoginForm = () => {
     });
   };
 
-  const getMailProviderLink = (email: string) => {
-    if (email.endsWith("@gmail.com")) return "https://mail.google.com";
-    if (email.endsWith("@yandex.ru") || email.endsWith("@yandex.com"))
-      return "https://mail.yandex.com";
-    return "https://mail.google.com";
-  };
-
-  const mapErrorMessage = (message: string) => {
-    if (message.includes("email rate limit exceeded")) {
-      return "Слишком много запросов. Пожалуйста, попробуйте снова через несколько минут.";
-    }
-    return null;
-  };
-
-  const backendErrorMessage = error ? mapErrorMessage(error.message) : null;
+  const backendErrorMessage = error
+    ? mapLinkLoginErrorMessage(error.message)
+    : null;
 
   return (
     <Card className="w-full max-w-md">
