@@ -1,4 +1,9 @@
 import { EditWishPage } from "@/pages/edit-wish/edit-wish";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Редактирование вишлиста",
+};
 
 export default async function Page({
   params,

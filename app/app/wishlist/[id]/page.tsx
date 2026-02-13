@@ -1,4 +1,9 @@
+import { Metadata } from "next";
 import { WishlistPage } from "@/pages/wishlist";
+
+export const metadata: Metadata = {
+  title: "Мои вишлисты",
+};
 
 export default async function Page({
   params,

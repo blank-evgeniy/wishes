@@ -1,7 +1,12 @@
 import { PublicWishlistPage } from "@/pages/public-wishlist";
 import { WishlistDetails } from "@/shared/api/types";
 import { createClient } from "@/shared/utils/supabase/server";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Вишлист",
+};
 
 async function getWishlistDetails(id: number) {
   const supabase = await createClient();
