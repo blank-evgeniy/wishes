@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 
-import Backlog from "../../../private/backlog.md";
-
-export default function Page() {
+export default async function Page() {
   if (process.env.NODE_ENV === "production") return notFound();
+
+  const Backlog = (await import("../../../private/backlog.md")).default;
 
   return <Backlog />;
 }
