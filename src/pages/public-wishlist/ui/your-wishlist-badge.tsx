@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/context/auth-context";
 import { Badge } from "@/shared/ui/badge";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/tooltip";
 
 interface YourWishlistBadgeProps {
   ownerId: string;
@@ -14,8 +15,18 @@ export const YourWishlistBadge = ({
 }: YourWishlistBadgeProps) => {
   const user = useAuth();
 
-  if (user && user.id === ownerId)
-    return <Badge className={className}>Ваш вишлист</Badge>;
+  if (user && user.id === ownerId) {
+    return (
+      <Tooltip>
+        <TooltipTrigger>
+          <Badge className={className}>Ваш вишлист</Badge>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Так видят ваш вишлист другие пользователи</p>
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
 
   return null;
 };
