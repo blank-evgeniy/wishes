@@ -1,9 +1,7 @@
+import { LinkLoginForm, PasswordLoginForm } from "@/modules/auth";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/tabs";
 
-import { LinkLoginForm } from "./ui/link-login-form";
-import { PasswordLoginForm } from "./ui/password-login-form";
-
-export const LoginPage = () => {
+export const LoginView = () => {
   return (
     <main className="flex flex-col items-center lg:mt-20 mt-12">
       <Tabs defaultValue="password" className="max-w-md w-full">

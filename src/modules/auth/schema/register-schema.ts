@@ -13,6 +13,7 @@ export const registerSchema = z
       .max(30, { message: "Не более 30 символов" }),
   })
   .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
     message: "Пароли не совпадают",
   });
 

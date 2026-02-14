@@ -3,7 +3,7 @@
 import { PencilIcon, PlusIcon, TrashIcon } from "lucide-react";
 import Link from "next/link";
 
-import { useAuth } from "@/context/auth-context";
+import { useAuth } from "@/modules/auth";
 import { WishlistDetails } from "@/shared/api/types";
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";

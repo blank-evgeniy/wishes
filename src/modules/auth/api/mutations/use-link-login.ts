@@ -1,4 +1,5 @@
 "use client";
+
 import { useMutation } from "@tanstack/react-query";
 
 import { supabase } from "@/shared/utils/supabase/client";

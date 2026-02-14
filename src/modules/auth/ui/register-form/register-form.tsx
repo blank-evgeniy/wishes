@@ -1,10 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import {
   Card,
@@ -16,43 +15,53 @@ import {
 } from "@/shared/ui/card";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
+import { MailMessageAlert } from "@/templates/mail-message-alert";
 
-import { useLoginByPassword } from "./api/use-login-by-password";
-import { LoginByPasswordSchema, loginByPasswordSchema } from "./model/schema";
-import { mapPasswordLoginErrorMessage } from "./model/utils";
+import { useRegister } from "../../api/mutations";
+import { RegisterSchema, registerSchema } from "../../schema/register-schema";
 
-export const PasswordLoginForm = () => {
-  const router = useRouter();
+export const RegisterForm = () => {
+  const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
 
-  const { mutate: login, isPending, error } = useLoginByPassword();
+  const { mutate: createAccount, isPending } = useRegister();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginByPasswordSchema>({
-    resolver: zodResolver(loginByPasswordSchema),
+  } = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (data: LoginByPasswordSchema) => {
-    login(data, {
-      onSuccess: () => router.replace(routes.dashboard),
-    });
+  const onSubmit = (data: RegisterSchema) => {
+    createAccount(
+      {
+        email: data.email,
+        password: data.password,
+      },
+      {
+        onSuccess: () => {
+          setSubmittedEmail(data.email);
+        },
+      },
+    );
   };
-
-  const backendErrorMessage = error
-    ? mapPasswordLoginErrorMessage(error.message)
-    : null;
 
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Вход в аккаунт</CardTitle>
+        <CardTitle>Создание аккаунта</CardTitle>
         <CardDescription>
-          Введите почту и пароль для входа в аккаунт.
+          Введите почту и пароль для создания аккаунта.
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
+        {submittedEmail && (
+          <MailMessageAlert
+            submittedEmail={submittedEmail}
+            note={"Мы отправили ссылку для подтверждения почты на"}
+          />
+        )}
         <form onSubmit={handleSubmit(onSubmit)} id="login-form">
           <FieldGroup>
             <Field>
@@ -62,6 +71,7 @@ export const PasswordLoginForm = () => {
                 type="email"
                 placeholder="example@mail.com"
                 aria-invalid={!!errors.email}
+                autoComplete="email"
                 {...register("email")}
               />
               {errors.email && <FieldError>{errors.email.message}</FieldError>}
@@ -74,13 +84,28 @@ export const PasswordLoginForm = () => {
                 type="password"
                 placeholder="Введите пароль"
                 aria-invalid={!!errors.password}
+                autoComplete="new-password"
                 {...register("password")}
               />
               {errors.password && (
                 <FieldError>{errors.password.message}</FieldError>
               )}
-              {backendErrorMessage && (
-                <FieldError>{backendErrorMessage}</FieldError>
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="password-repeat">
+                Повторите пароль
+              </FieldLabel>
+              <Input
+                id="password-repeat"
+                type="password"
+                placeholder="Введите пароль"
+                aria-invalid={!!errors.confirmPassword}
+                autoComplete="new-password"
+                {...register("confirmPassword")}
+              />
+              {errors.confirmPassword && (
+                <FieldError>{errors.confirmPassword.message}</FieldError>
               )}
             </Field>
           </FieldGroup>
@@ -94,7 +119,7 @@ export const PasswordLoginForm = () => {
           disabled={isPending}
           loading={isPending}
         >
-          Войти
+          Создать аккаунт
         </Button>
       </CardFooter>
     </Card>

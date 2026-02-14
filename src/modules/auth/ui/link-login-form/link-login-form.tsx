@@ -15,11 +15,14 @@ import {
 } from "@/shared/ui/card";
 import { Field, FieldError, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
+import { mapSupabaseErrorMessage } from "@/shared/utils/errors/map-supabase-error";
 import { MailMessageAlert } from "@/templates/mail-message-alert";
 
-import { useLinkLogin } from "./api/use-link-login";
-import { LoginByLinkSchema, loginByLinkSchema } from "./model/schema";
-import { mapLinkLoginErrorMessage } from "./model/utils";
+import { useLinkLogin } from "../../api/mutations";
+import {
+  LinkLoginSchema,
+  linkLoginSchema,
+} from "../../schema/link-login-schema";
 
 export const LinkLoginForm = () => {
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
@@ -30,11 +33,11 @@ export const LinkLoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginByLinkSchema>({
-    resolver: zodResolver(loginByLinkSchema),
+  } = useForm<LinkLoginSchema>({
+    resolver: zodResolver(linkLoginSchema),
   });
 
-  const onSubmit = (data: LoginByLinkSchema) => {
+  const onSubmit = (data: LinkLoginSchema) => {
     linkLogin(data.email, {
       onSuccess: () => {
         setSubmittedEmail(data.email);
@@ -43,7 +46,7 @@ export const LinkLoginForm = () => {
   };
 
   const backendErrorMessage = error
-    ? mapLinkLoginErrorMessage(error.message)
+    ? mapSupabaseErrorMessage(error.message)
     : null;
 
   return (

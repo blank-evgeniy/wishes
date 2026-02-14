@@ -4,7 +4,7 @@ import { MenuIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-import { useAuth } from "@/context/auth-context";
+import { useAuth } from "@/modules/auth";
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/utils/cn";

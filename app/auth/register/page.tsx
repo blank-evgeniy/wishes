@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
-import { RegistrationPage } from "@/pages/registration";
+import { RegisterView } from "@/views/register";
 
 export const metadata: Metadata = {
   title: "Создание аккаунта",
 };
 
 export default function Page() {
-  return <RegistrationPage />;
+  return <RegisterView />;
 }

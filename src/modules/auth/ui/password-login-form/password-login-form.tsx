@@ -1,9 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
+import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import {
   Card,
@@ -15,53 +16,46 @@ import {
 } from "@/shared/ui/card";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
-import { MailMessageAlert } from "@/templates/mail-message-alert";
+import { mapSupabaseErrorMessage } from "@/shared/utils/errors/map-supabase-error";
 
-import { useRegister } from "./api/use-register";
-import { RegisterSchema, registerSchema } from "./model/schema";
+import { useLoginByPassword } from "../../api/mutations";
+import {
+  PasswordLoginSchema,
+  passwordLoginSchema,
+} from "../../schema/password-login-schema";
 
-export const RegisterForm = () => {
-  const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
+export const PasswordLoginForm = () => {
+  const router = useRouter();
 
-  const { mutate: createAccount, isPending } = useRegister();
+  const { mutate: login, isPending, error } = useLoginByPassword();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterSchema>({
-    resolver: zodResolver(registerSchema),
+  } = useForm<PasswordLoginSchema>({
+    resolver: zodResolver(passwordLoginSchema),
   });
 
-  const onSubmit = (data: RegisterSchema) => {
-    createAccount(
-      {
-        email: data.email,
-        password: data.password,
-      },
-      {
-        onSuccess: () => {
-          setSubmittedEmail(data.email);
-        },
-      },
-    );
+  const onSubmit = (data: PasswordLoginSchema) => {
+    login(data, {
+      onSuccess: () => router.replace(routes.dashboard),
+    });
   };
+
+  const backendErrorMessage = error
+    ? mapSupabaseErrorMessage(error.message)
+    : null;
 
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Создание аккаунта</CardTitle>
+        <CardTitle>Вход в аккаунт</CardTitle>
         <CardDescription>
-          Введите почту и пароль для создания аккаунта.
+          Введите почту и пароль для входа в аккаунт.
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        {submittedEmail && (
-          <MailMessageAlert
-            submittedEmail={submittedEmail}
-            note={"Мы отправили ссылку для подтверждения почты на"}
-          />
-        )}
         <form onSubmit={handleSubmit(onSubmit)} id="login-form">
           <FieldGroup>
             <Field>
@@ -71,7 +65,6 @@ export const RegisterForm = () => {
                 type="email"
                 placeholder="example@mail.com"
                 aria-invalid={!!errors.email}
-                autoComplete="email"
                 {...register("email")}
               />
               {errors.email && <FieldError>{errors.email.message}</FieldError>}
@@ -84,28 +77,13 @@ export const RegisterForm = () => {
                 type="password"
                 placeholder="Введите пароль"
                 aria-invalid={!!errors.password}
-                autoComplete="new-password"
                 {...register("password")}
               />
               {errors.password && (
                 <FieldError>{errors.password.message}</FieldError>
               )}
-            </Field>
-
-            <Field>
-              <FieldLabel htmlFor="password-repeat">
-                Повторите пароль
-              </FieldLabel>
-              <Input
-                id="password-repeat"
-                type="password"
-                placeholder="Введите пароль"
-                aria-invalid={!!errors.confirmPassword}
-                autoComplete="new-password"
-                {...register("confirmPassword")}
-              />
-              {errors.confirmPassword && (
-                <FieldError>{errors.confirmPassword.message}</FieldError>
+              {backendErrorMessage && (
+                <FieldError>{backendErrorMessage}</FieldError>
               )}
             </Field>
           </FieldGroup>
@@ -119,7 +97,7 @@ export const RegisterForm = () => {
           disabled={isPending}
           loading={isPending}
         >
-          Создать аккаунт
+          Войти
         </Button>
       </CardFooter>
     </Card>

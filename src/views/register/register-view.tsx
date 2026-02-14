@@ -1,6 +1,6 @@
-import { RegisterForm } from "./ui/register-form";
+import { RegisterForm } from "@/modules/auth";
 
-export const RegistrationPage = () => {
+export const RegisterView = () => {
   return (
     <main className="flex flex-col items-center lg:mt-20 mt-12">
       <RegisterForm />

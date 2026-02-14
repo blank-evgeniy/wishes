@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { useAuth } from "@/context/auth-context";
+import { useAuth } from "@/modules/auth";
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 
