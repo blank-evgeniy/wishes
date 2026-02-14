@@ -1,6 +1,6 @@
 import { WishlistItem } from "@/shared/api/types";
-import { WishCardTemplate } from "@/templates/wish-card-template";
 
+import { WishCardTemplate } from "../-common/wish-card-template";
 import { WishActions } from "./my-wish-actions";
 
 interface MyWishCardProps {

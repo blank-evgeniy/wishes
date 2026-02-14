@@ -15,7 +15,7 @@ import {
 } from "@/shared/ui/card";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
-import { MailMessageAlert } from "@/templates/mail-message-alert";
+import { MailMessageAlert } from "@/shared/ui/mail-message-alert";
 
 import { useRegister } from "../../api/mutations";
 import { RegisterSchema, registerSchema } from "../../schema/register-schema";

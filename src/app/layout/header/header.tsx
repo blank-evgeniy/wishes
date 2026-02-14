@@ -11,7 +11,10 @@ interface HeaderProps {
 
 export const Header = ({ className }: HeaderProps) => (
   <header
-    className={cn("flex justify-between gap-8 items-center mb-8", className)}
+    className={cn(
+      "flex justify-between gap-8 items-center lg:my-8 my-6",
+      className,
+    )}
   >
     <Link
       href={routes.home}

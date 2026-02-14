@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/shared/ui/select";
 
-export const ModeSwitcher = () => {
+export const ModeSelect = () => {
   const { setTheme, theme } = useTheme();
 
   const handleSelect = (value: string) => {
@@ -34,4 +34,4 @@ export const ModeSwitcher = () => {
   );
 };
 
-export default ModeSwitcher;
+export default ModeSelect;

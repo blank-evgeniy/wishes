@@ -8,7 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/shared/ui/breadcrumb";
 
-export const SettingsPageBreadcrumbs = () => (
+export const SettingsViewBreadcrumbs = () => (
   <Breadcrumb>
     <BreadcrumbList>
       <BreadcrumbItem>

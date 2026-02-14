@@ -15,7 +15,7 @@ import {
 } from "@/shared/ui/alert-dialog";
 import { Button } from "@/shared/ui/button";
 
-import { useLogout } from "./api/use-logout";
+import { useLogout } from "../../api/mutations";
 
 export const LogoutAction = ({ className }: { className?: string }) => {
   const router = useRouter();

@@ -15,8 +15,8 @@ import {
 } from "@/shared/ui/card";
 import { Field, FieldError, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
+import { MailMessageAlert } from "@/shared/ui/mail-message-alert";
 import { mapSupabaseErrorMessage } from "@/shared/utils/errors/map-supabase-error";
-import { MailMessageAlert } from "@/templates/mail-message-alert";
 
 import { useLinkLogin } from "../../api/mutations";
 import {
