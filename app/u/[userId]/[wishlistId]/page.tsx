@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { PublicWishlistPage } from "@/pages/public-wishlist";
 import { WishlistDetails } from "@/shared/api/types";
 import { createClient } from "@/shared/utils/supabase/server";
+import { PublicWishlistView } from "@/views/public-wishlist";
 
 export const metadata: Metadata = {
   title: "Вишлист",
@@ -39,11 +39,5 @@ export default async function Page({
 
   if (wishlistDetails.owner_id !== userId) return notFound();
 
-  return (
-    <PublicWishlistPage
-      wishlist={wishlistDetails}
-      wishlistId={Number(wishlistId)}
-      userId={Number(userId)}
-    />
-  );
+  return <PublicWishlistView wishlist={wishlistDetails} />;
 }

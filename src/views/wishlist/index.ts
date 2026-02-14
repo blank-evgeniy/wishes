@@ -1,1 +1,1 @@
-export { WishlistPage } from "./wishlist";
+export { WishlistView } from "./wishlist-view";

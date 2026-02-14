@@ -1,1 +1,1 @@
-export { PublicWishlistPage } from "./public-wishlist";
+export { PublicWishlistView } from "./public-wishlist-view";

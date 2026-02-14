@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { EditWishPage } from "@/pages/edit-wish/edit-wish";
+import { EditWishView } from "@/views/edit-wish";
 
 export const metadata: Metadata = {
   title: "Редактирование вишлиста",
@@ -13,5 +13,5 @@ export default async function Page({
 }) {
   const { id, wishId } = await params;
 
-  return <EditWishPage wishlistId={Number(id)} wishId={Number(wishId)} />;
+  return <EditWishView wishlistId={Number(id)} wishId={Number(wishId)} />;
 }

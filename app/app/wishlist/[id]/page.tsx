@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { WishlistPage } from "@/pages/wishlist";
+import { WishlistView } from "@/views/wishlist";
 
 export const metadata: Metadata = {
   title: "Мои вишлисты",
@@ -13,5 +13,5 @@ export default async function Page({
 }) {
   const { id } = await params;
 
-  return <WishlistPage id={Number(id)} />;
+  return <WishlistView id={Number(id)} />;
 }
