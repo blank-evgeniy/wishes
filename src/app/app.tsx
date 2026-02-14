@@ -2,7 +2,7 @@ import "./styles/globals.css";
 
 import { Toaster } from "sonner";
 
-import { AuthProvider } from "@/context/auth-context";
+import { AuthProvider } from "@/modules/auth";
 import { TooltipProvider } from "@/shared/ui/tooltip";
 import { createClient } from "@/shared/utils/supabase/server";
 

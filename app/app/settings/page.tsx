@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
-import { SettingsPage } from "@/pages/settings/settings";
+import { SettingsView } from "@/views/settings";
 
 export const metadata: Metadata = {
   title: "Настройки",
 };
 
 export default function Page() {
-  return <SettingsPage />;
+  return <SettingsView />;
 }
