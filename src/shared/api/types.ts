@@ -19,6 +19,11 @@ export type WishlistDetails = Wishlist & { wishlist_items: WishlistItem[] };
 
 export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 
+export type ProfileUpdateDto = Omit<
+  Database["public"]["Tables"]["profiles"]["Update"],
+  "created_at" | "id" | "email"
+>;
+
 export type PublicWishlistDetails = WishlistDetails & { owner: Profile };
 
 export type WishlistItemInsertDto = Omit<

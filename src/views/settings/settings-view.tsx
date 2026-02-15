@@ -3,6 +3,8 @@
 import dynamic from "next/dynamic";
 
 import { LogoutAction } from "@/modules/auth";
+import { EditProfilePanel } from "@/modules/profile";
+import { Card, CardContent } from "@/shared/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/shared/ui/field";
 import { Skeleton } from "@/shared/ui/skeleton";
 
@@ -14,18 +16,22 @@ const ModeSelect = dynamic(() => import("@/shared/ui/mode-select"), {
 });
 
 export const SettingsView = () => (
-  <main className="flex flex-col gap-12">
+  <main className="flex flex-col gap-8">
     <SettingsViewBreadcrumbs />
 
-    <div className="flex flex-col gap-8">
-      <FieldGroup>
-        <Field>
-          <FieldLabel>Тема сайта</FieldLabel>
-          <ModeSelect />
-        </Field>
-      </FieldGroup>
+    <EditProfilePanel />
 
-      <LogoutAction className="w-fit" />
-    </div>
+    <Card>
+      <CardContent>
+        <FieldGroup>
+          <Field>
+            <FieldLabel>Тема сайта</FieldLabel>
+            <ModeSelect />
+          </Field>
+        </FieldGroup>
+      </CardContent>
+    </Card>
+
+    <LogoutAction className="w-fit ml-auto" />
   </main>
 );
