@@ -12,8 +12,15 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/shared/ui/empty";
-import { Item, ItemActions, ItemContent, ItemTitle } from "@/shared/ui/item";
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemMedia,
+  ItemTitle,
+} from "@/shared/ui/item";
 import { Skeleton } from "@/shared/ui/skeleton";
+import { UserAvatar } from "@/shared/ui/user-avatar";
 
 import { wishlistQueries } from "../../api/wishlists-queries";
 
@@ -30,7 +37,7 @@ export const SavedWishlists = () => {
         {isLoading &&
           new Array(3)
             .fill(0)
-            .map((_, i) => <Skeleton className="h-12 w-full" key={i} />)}
+            .map((_, i) => <Skeleton className="h-14.5 w-full" key={i} />)}
 
         {!isLoading && !wishlists?.length && (
           <Empty>
@@ -47,13 +54,26 @@ export const SavedWishlists = () => {
         )}
 
         {wishlists?.map(({ wishlists: w }) => (
-          <Item variant={"card"} size="sm" asChild key={w.id} className="h-12">
+          <Item
+            variant={"card"}
+            size="sm"
+            asChild
+            key={w.id}
+            className="h-14.5"
+          >
             <Link
               href={routes.publicWishlist({
                 userId: w.owner_id!,
                 wishlistId: w.id,
               })}
             >
+              <ItemMedia>
+                <UserAvatar
+                  src={w.owner.avatarSrc}
+                  alt={w.owner.display_name}
+                  fallback={w.owner.display_name}
+                />
+              </ItemMedia>
               <ItemContent>
                 <ItemTitle>{w?.title}</ItemTitle>
               </ItemContent>

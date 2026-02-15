@@ -14,7 +14,7 @@ export async function GET() {
         created_at,
         wishlists (
           *,
-          owner_id
+          owner:profiles (*)
         )
       `,
       )

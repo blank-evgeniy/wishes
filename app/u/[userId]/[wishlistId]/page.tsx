@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { WishlistDetails } from "@/shared/api/types";
+import { PublicWishlistDetails } from "@/shared/api/types";
 import { createClient } from "@/shared/utils/supabase/server";
 import { PublicWishlistView } from "@/views/public-wishlist";
 
@@ -14,9 +14,15 @@ async function getWishlistDetails(id: number) {
 
   const { data, error } = await supabase
     .from("wishlists")
-    .select(`*, wishlist_items (*)`)
+    .select(
+      `
+      *,
+      wishlist_items (*),
+      owner:profiles (*)
+    `,
+    )
     .eq("id", id)
-    .single<WishlistDetails>();
+    .single<PublicWishlistDetails>();
 
   if (error) {
     console.warn("Ошибка при получении списка:", error.message);

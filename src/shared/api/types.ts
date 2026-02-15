@@ -17,6 +17,10 @@ export type WishlistItemWithWishlist = WishlistItem & { wishlists: Wishlist };
 
 export type WishlistDetails = Wishlist & { wishlist_items: WishlistItem[] };
 
+export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
+
+export type PublicWishlistDetails = WishlistDetails & { owner: Profile };
+
 export type WishlistItemInsertDto = Omit<
   Database["public"]["Tables"]["wishlist_items"]["Insert"],
   "created_at" | "id" | "wishlist_id"
@@ -27,9 +31,11 @@ export type WishlistItemUpdateDto = Omit<
   "created_at" | "id" | "wishlist_id"
 >;
 
-export type SavedWishlist =
+export type SavedWishlistRow =
   Database["public"]["Tables"]["saved_wishlists"]["Row"];
-export type SavedWishlistWithWishlist = SavedWishlist & { wishlists: Wishlist };
+export type SavedWishlist = SavedWishlistRow & {
+  wishlists: Wishlist & { owner: Profile };
+};
 
 export type SavedWishlistInsertDto = Omit<
   Database["public"]["Tables"]["saved_wishlists"]["Insert"],

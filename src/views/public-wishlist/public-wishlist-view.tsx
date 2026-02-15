@@ -1,8 +1,8 @@
 import { PublicWishlistHeader, PublicWishlistItems } from "@/modules/wishlist";
-import { WishlistDetails } from "@/shared/api/types";
+import { PublicWishlistDetails } from "@/shared/api/types";
 
 interface PublicWishlistViewProps {
-  wishlist: WishlistDetails;
+  wishlist: PublicWishlistDetails;
 }
 
 export const PublicWishlistView = ({ wishlist }: PublicWishlistViewProps) => {
