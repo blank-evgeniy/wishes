@@ -70,31 +70,33 @@ export const CreateWishForm = ({ wishlistId }: CreateWishFormProps) => {
         </FieldDescription>
 
         <FieldGroup>
-          <Field>
-            <FieldLabel htmlFor="title">
-              Название
-              <RequiredMark />
-            </FieldLabel>
-            <Input
-              id="title"
-              autoComplete="off"
-              {...register("title")}
-              aria-invalid={!!errors.title}
-            />
-            {errors.title && <FieldError>{errors.title.message}</FieldError>}
-          </Field>
+          <div className="flex gap-7 lg:flex-row flex-col">
+            <Field>
+              <FieldLabel htmlFor="title">
+                Название
+                <RequiredMark />
+              </FieldLabel>
+              <Input
+                id="title"
+                autoComplete="off"
+                {...register("title")}
+                aria-invalid={!!errors.title}
+              />
+              {errors.title && <FieldError>{errors.title.message}</FieldError>}
+            </Field>
 
-          <Field>
-            <FieldLabel htmlFor="price">Цена</FieldLabel>
-            <Input
-              id="price"
-              type="number"
-              autoComplete="off"
-              {...register("price")}
-              aria-invalid={!!errors.price}
-            />
-            {errors.price && <FieldError>{errors.price.message}</FieldError>}
-          </Field>
+            <Field>
+              <FieldLabel htmlFor="price">Цена</FieldLabel>
+              <Input
+                id="price"
+                type="number"
+                autoComplete="off"
+                {...register("price")}
+                aria-invalid={!!errors.price}
+              />
+              {errors.price && <FieldError>{errors.price.message}</FieldError>}
+            </Field>
+          </div>
 
           <Field>
             <FieldLabel htmlFor="url">Ссылка</FieldLabel>
