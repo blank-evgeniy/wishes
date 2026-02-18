@@ -15,7 +15,19 @@ export const MyWishlistItems = ({ wishlist }: MyWishlistItemsProps) => {
   if (items.length === 0) return <EmptyMyWishlist id={wishlist.id} />;
 
   return (
-    <div className="grid md:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
+    <div className="grid md:grid-cols-4 grid-cols-2 sm:gap-8 gap-4">
+      {wishlist.wishlist_items.map((item) => (
+        <MyWishCard data={item} key={item.id} />
+      ))}
+      {wishlist.wishlist_items.map((item) => (
+        <MyWishCard data={item} key={item.id} />
+      ))}
+      {wishlist.wishlist_items.map((item) => (
+        <MyWishCard data={item} key={item.id} />
+      ))}
+      {wishlist.wishlist_items.map((item) => (
+        <MyWishCard data={item} key={item.id} />
+      ))}
       {wishlist.wishlist_items.map((item) => (
         <MyWishCard data={item} key={item.id} />
       ))}
