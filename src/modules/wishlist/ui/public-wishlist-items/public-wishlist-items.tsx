@@ -15,7 +15,7 @@ export const PublicWishlistItems = ({ wishlist }: PublicWishlistItemsProps) => {
   if (items.length === 0) return <EmptyPublicWishlist />;
 
   return (
-    <div className="grid md:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
+    <div className="grid md:grid-cols-4 grid-cols-2 sm:gap-8 gap-4">
       {wishlist.wishlist_items.map((item) => (
         <PublicWishCard data={item} key={item.id} />
       ))}

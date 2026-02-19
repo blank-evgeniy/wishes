@@ -11,9 +11,9 @@ export const WishlistViewSkeleton = () => (
       <MyWishlistActions isLoading />
     </header>
 
-    <div className="grid grid-cols-3 gap-8">
+    <div className="grid md:grid-cols-4 grid-cols-2 sm:gap-8 gap-4">
       {new Array(3).fill(0).map((_, i) => (
-        <Skeleton key={i} className="h-80 w-full" />
+        <Skeleton key={i} className="h-96 w-full" />
       ))}
     </div>
   </main>
