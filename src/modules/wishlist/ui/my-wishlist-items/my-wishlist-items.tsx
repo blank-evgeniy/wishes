@@ -19,18 +19,6 @@ export const MyWishlistItems = ({ wishlist }: MyWishlistItemsProps) => {
       {wishlist.wishlist_items.map((item) => (
         <MyWishCard data={item} key={item.id} />
       ))}
-      {wishlist.wishlist_items.map((item) => (
-        <MyWishCard data={item} key={item.id} />
-      ))}
-      {wishlist.wishlist_items.map((item) => (
-        <MyWishCard data={item} key={item.id} />
-      ))}
-      {wishlist.wishlist_items.map((item) => (
-        <MyWishCard data={item} key={item.id} />
-      ))}
-      {wishlist.wishlist_items.map((item) => (
-        <MyWishCard data={item} key={item.id} />
-      ))}
     </div>
   );
 };
