@@ -1,12 +1,12 @@
 "use client";
 
 import { format } from "date-fns";
+import { ru } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
 
 import { Button } from "./button";
 import { Calendar, CalendarProps } from "./calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
-import { ru } from "date-fns/locale";
 
 type DatePickerProps = {
   date?: Date;
@@ -45,6 +45,7 @@ export function DatePicker({
           selected={date}
           onSelect={setDate}
           required={required}
+          captionLayout="dropdown"
           {...props}
         />
       </PopoverContent>
