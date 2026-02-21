@@ -3,8 +3,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { notFound } from "next/navigation";
 
-import { MyWishlistActions, MyWishlistItems } from "@/modules/wishlist";
-import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
+import {
+  MyWishlistActions,
+  MyWishlistItems,
+  wishlistQueries,
+} from "@/modules/wishlist";
 
 import { WishlistViewBreadcrumbs } from "./ui/wishlist-view-breadcrumbs";
 import { WishlistViewSkeleton } from "./ui/wishlist-view-skeleton";

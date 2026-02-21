@@ -6,7 +6,8 @@ import {
   WishlistUpdateDto,
 } from "@/shared/api/types";
 import { updateWishlist } from "@/shared/api/wishlists/update-wishlist";
-import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
+
+import { wishlistQueries } from "../wishlists-queries";
 
 export const useEditWishlist = (id: number) => {
   const queryClient = useQueryClient();

@@ -4,10 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import { SaveIcon } from "lucide-react";
 
 import { useAuth } from "@/modules/auth";
-import { savedWishlistsQueries } from "@/shared/api/saved-wishlists/saved-wishlist-queries";
 import { Button } from "@/shared/ui/button";
 
 import { useSaveWishlist } from "../../api/mutations";
+import { wishlistQueries } from "../../api/wishlists-queries";
 
 export const SaveWishlistAction = ({
   wishlistId,
@@ -18,7 +18,7 @@ export const SaveWishlistAction = ({
 }) => {
   const user = useAuth();
 
-  const { data, isLoading } = useQuery(savedWishlistsQueries.has(wishlistId));
+  const { data, isLoading } = useQuery(wishlistQueries.has(wishlistId));
 
   const isSaved = !!data?.has;
 

@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { saveWishlist } from "@/shared/api/saved-wishlists/save-wishlist";
-import { savedWishlistsQueries } from "@/shared/api/saved-wishlists/saved-wishlist-queries";
 import { SavedWishlist, SavedWishlistInsertDto } from "@/shared/api/types";
+
+import { wishlistQueries } from "../wishlists-queries";
 
 export const useSaveWishlist = () => {
   const queryClient = useQueryClient();
@@ -11,7 +12,7 @@ export const useSaveWishlist = () => {
     mutationFn: (data: SavedWishlistInsertDto) => saveWishlist(data),
     onSuccess: (data) => {
       queryClient.setQueryData<SavedWishlist[]>(
-        savedWishlistsQueries.savedWishlistsKey(),
+        wishlistQueries.savedWishlistsKey(),
         (oldData) => {
           if (!oldData) return oldData;
 
@@ -20,7 +21,7 @@ export const useSaveWishlist = () => {
       );
 
       queryClient.setQueryData<{ has: boolean }>(
-        savedWishlistsQueries.hasKey(data.wishlist_id!),
+        wishlistQueries.hasKey(data.wishlist_id!),
         {
           has: true,
         },

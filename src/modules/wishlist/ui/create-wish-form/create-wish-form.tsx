@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-import { wishlistQueries } from "@/shared/api/wishlists/wishlists-queries";
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/button";
 import {
@@ -22,6 +21,7 @@ import { RequiredMark } from "@/shared/ui/required-marl";
 import { Textarea } from "@/shared/ui/textarea";
 
 import { useCreateWish } from "../../api/mutations/use-create-wish";
+import { wishlistQueries } from "../../api/wishlists-queries";
 import { WishSchema, wishSchema } from "../../schema/wish-schema";
 
 interface CreateWishFormProps {
