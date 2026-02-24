@@ -39,7 +39,10 @@ export const PasswordLoginForm = () => {
 
   const onSubmit = (data: PasswordLoginSchema) => {
     login(data, {
-      onSuccess: () => router.replace(routes.dashboard),
+      onSuccess: () => {
+        router.push(routes.dashboard);
+        router.refresh();
+      },
     });
   };
 
